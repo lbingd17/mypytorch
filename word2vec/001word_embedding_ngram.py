@@ -1,3 +1,9 @@
+# coding=UTF-8
+#查看pytorch版本的方法
+##pytorch-doc-zh/docs/1.0/nlp_word_embeddings_tutorial.md
+import torch
+print(torch.__version__)  #注意是双下划线
+
 # 作者: Robert Guthrie
 
 import torch
