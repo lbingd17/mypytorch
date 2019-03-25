@@ -1,0 +1,30 @@
+https://ptorch.com/news/189.html
+https://ptorch.com/news/189.html
+
+Pytorch使用To方法编写代码在不同设备(CUDA/CPU)上兼容(device-agnostic)Song • 3550 次浏览 • 0 个回复 • 2018年06月30日
+以前版本的PyTorch编写device-agnostic代码非常困难（即，在不修改代码的情况下在CUDA可以使用或者只能使用CPU的设备上运行）。
+
+device-agnostic的概念
+即设备无关，可以理解为无论什么设备都可以运行您编写的代码。(PS:个人理解，我没有在网上找到专业解释)
+
+PyTorch 0.4.0使代码兼容
+PyTorch 0.4.0通过两种方法使代码兼容变得非常容易：
+
+张量的device属性为所有张量提供了torch.device设备。（注意:get_device仅适用于CUDA张量）
+
+to方法Tensors和Modules可用于容易地将对象移动到不同的设备（代替以前的cpu()或cuda()方法）
+我们推荐以下模式：
+
+# 开始脚本，创建一个张量
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+...
+
+# 但是无论你获得一个新的Tensor或者Module
+# 如果他们已经在目标设备上则不会执行复制操作
+input = data.to(device)
+model = MyModule(...).to(device)
+
+原创文章，转载请注明 ：Pytorch使用To方法编写代码在不同设备(CUDA/CPU)上兼容(device-agnostic) - pytorch中文网
+原文出处： https://ptorch.com/news/189.html
+问题交流群 ：168117787
